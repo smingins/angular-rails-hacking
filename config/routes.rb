@@ -1,7 +1,13 @@
 AngularRailsHacking::Application.routes.draw do
+  get "home/index"
+
+  devise_for :users
+
   get "dashboard/index"
 
-  root :to => 'dashboard#index'
+  root :to => 'home#index'
+  match 'dashboard' => 'dashboard#index', :as => :user_root
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

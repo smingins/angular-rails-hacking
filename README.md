@@ -3,4 +3,9 @@ angular-rails-hacking
 
 Hacking on Angular Rails
 
-== Setup
+## Setup
+````
+  bundle
+  rake db:migrate
+  rake db:seed
+````
