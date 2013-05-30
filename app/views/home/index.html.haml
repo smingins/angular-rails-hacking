@@ -1,2 +1,5 @@
 %p
-  Please sign in with fred@example.com/password
+  -if user_signed_in?
+    You are signed in as #{current_user.email}
+  -else
+    Please sign in with fred@example.com/password

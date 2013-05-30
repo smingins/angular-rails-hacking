@@ -1,11 +1,10 @@
 %html
   %head
     %title AngularRailsHacking
-    = stylesheet_link_tag    "bootstrap"
-    = stylesheet_link_tag    "bootstrap-responsive"
+    = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
-  %body{:style => "padding-top: 60px; padding-bottom: 40px;"}
+  %body
     .navbar.navbar-inverse.navbar-fixed-top
       .navbar-inner
         .container
@@ -17,6 +16,8 @@
           .nav-collapse.collapse
             %ul.nav
               - if user_signed_in?
+                %li
+                  =link_to "Dashboard", user_root_path
                 %li
                   =link_to 'Sign Out', destroy_user_session_path, method: :delete if user_signed_in?
               - else

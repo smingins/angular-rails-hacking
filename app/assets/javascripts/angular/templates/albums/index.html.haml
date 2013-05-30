@@ -1,22 +1,5 @@
 .row-fluid
-  .span2
-    %h3 Albums
-    %ul.nav.nav-list
-      %li.nav-header Albums
-
-      %li{'ng-repeat' => "album in albums"}
-        %a{:href => "/user/{{album.user_id}}/album/{{album.id}}/photos"}
-          {{album.name}}
-
-
-      %li.nav-header New
-      %li
-        %form.form-inline{"ng-submit" => "addAlbum()"}
-          .input-append
-            %input.span6{"ng-model" => "name", :type => "text", :placeholder => "New Album"}
-            %button.btn Add
-
+  %div{'ng-include' => "'" + asset_path('angular/templates/albums/_sidebar.html') + "'"}}
   .span10
     %h3 Photos
-    %p Where are my photos? They should be here!
-    %p Instead, when you select an album .... the new route loads the new view!
+    %p Select an Album from the list to view the photos in that Album.

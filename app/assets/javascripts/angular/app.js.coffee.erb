@@ -1,6 +1,10 @@
 console.log("Loaded MyApp angularjs")
 app = angular.module('MyApp', ["ngResource"])
 
+app.config ["$httpProvider", (provider) ->
+  provider.defaults.headers.common["X-CSRF-Token"] = $("meta[name=csrf-token]").attr("content")
+]
+
 app.config ["$locationProvider", ($locationProvider) ->
   $locationProvider.html5Mode true
 ]
@@ -22,3 +26,6 @@ app.factory "Album", ($resource) ->
 
 app.factory "Photo", ($resource) ->
   $resource("/users/:userId/albums/:albumId/photos/:id", {userId: "@userId", albumId: "@albumId", id: "@id"}, {update: {method: "PUT"}})
+
+app.factory "AlbumList", (Album, $routeParams) ->
+  @album_list ||= Album.query({userId: $routeParams.userId})

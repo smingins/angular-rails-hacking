@@ -1,10 +1,13 @@
-%h3 Photos from {{album.name}}
+.row-fluid
+  %div{'ng-include' => "'" + asset_path('angular/templates/albums/_sidebar.html') + "'"}}
 
-%ul.thumbnails
-  %li.span2{'ng-repeat' => "photo in photos"}
-    .thumbnail
-      =image_tag('rails.png', :class => "thumbnail")
-      %em {{photo.title}}
+  .span10
+    %h3 Photos from {{album.name}}
 
-%a.btn{:href => "/users/{{album.user_id}}/albums"}
-  Back
+    %ul.thumbnails
+      %li.span2{'ng-show' => "!photos.length"}
+        You have no Photos in this Album
+      %li.span2{'ng-repeat' => "photo in photos"}
+        .thumbnail
+          =image_tag('rails.png', :class => "thumbnail")
+          %em {{photo.title}}
