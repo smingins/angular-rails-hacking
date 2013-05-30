@@ -24,12 +24,12 @@
                   =link_to "Sign Up", new_user_registration_path
                 %li
                   =link_to "Sign In", new_user_session_path
-            %form.navbar-form.pull-right
-              %input.span2{:placeholder => "Email", :type => "text"}/
-              %input.span2{:placeholder => "Password", :type => "password"}/
-              %button.btn{:type => "submit"} Sign in
-          / /.nav-collapse
 
+            - unless user_signed_in?
+              = form_for(:user, :as => :user, :url => session_path(:user), :html => {:class => "navbar-form pull-right"}) do |f|
+                = f.email_field :email, :autofocus => true, :placeholder => "Email", :class => "span2"
+                = f.password_field :password, :placeholder => "Password", :class => "span2"
+                = f.submit "Sign in", :class => "btn"
   
     .container-fluid
       = yield

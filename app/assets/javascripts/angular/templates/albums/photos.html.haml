@@ -1,8 +1,10 @@
 %h3 Photos from {{album.name}}
 
-%ul.photos
-  %li{'ng-repeat' => "photo in photos"}
-    {{photo.title}}
+%ul.thumbnails
+  %li.span2{'ng-repeat' => "photo in photos"}
+    .thumbnail
+      =image_tag('rails.png', :class => "thumbnail")
+      %em {{photo.title}}
 
-%a{:href => "/users/{{album.user_id}}/albums"}
+%a.btn{:href => "/users/{{album.user_id}}/albums"}
   Back

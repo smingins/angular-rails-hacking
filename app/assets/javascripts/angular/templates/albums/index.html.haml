@@ -1,16 +1,22 @@
 .row-fluid
   .span2
     %h3 Albums
-    %ul.albums
+    %ul.nav.nav-list
+      %li.nav-header Albums
+
       %li{'ng-repeat' => "album in albums"}
         %a{:href => "/user/{{album.user_id}}/album/{{album.id}}/photos"}
           {{album.name}}
-    %hr
 
-    %form{"ng-submit" => "addAlbum()"}
-      %input{"ng-model" => "name", :type => "text"}
-      %button
-        Add
+
+      %li.nav-header New
+      %li
+        %form.form-inline{"ng-submit" => "addAlbum()"}
+          .input-append
+            %input.span6{"ng-model" => "name", :type => "text", :placeholder => "New Album"}
+            %button.btn Add
+
   .span10
     %h3 Photos
-    %P Where are my photos? They should be here!
+    %p Where are my photos? They should be here!
+    %p Instead, when you select an album .... the new route loads the new view!
