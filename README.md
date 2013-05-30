@@ -11,6 +11,10 @@ and you will see routes matching some angular routes to that index.
 The Photo Album is an example of a Master/Detail page where a list of Photo Albums is on the left and the Photos for
 the selected Album appear on the right.  Thanks to those who helped me work this out!
 
+
+![Alt text](app/assets/images/screenshot.png?raw=true)
+
+
 ## Setup
 ````
   bundle
