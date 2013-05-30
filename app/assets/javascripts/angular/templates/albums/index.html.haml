@@ -1,13 +1,16 @@
-%aside.category
-  {{currentUrl()}}
-  %h3 Albums
-  %ul.albums
-    %li{'ng-repeat' => "album in albums"}
-      %a{:href => "/user/{{album.user_id}}/album/{{album.id}}/photos"}
-        {{album.name}}
-  %hr
+.row-fluid
+  .span2
+    %h3 Albums
+    %ul.albums
+      %li{'ng-repeat' => "album in albums"}
+        %a{:href => "/user/{{album.user_id}}/album/{{album.id}}/photos"}
+          {{album.name}}
+    %hr
 
-  %form{"ng-submit" => "addAlbum()"}
-    %input{"ng-model" => "name", :type => "text"}
-    %button
-      Add
+    %form{"ng-submit" => "addAlbum()"}
+      %input{"ng-model" => "name", :type => "text"}
+      %button
+        Add
+  .span10
+    %h3 Photos
+    %P Where are my photos? They should be here!
