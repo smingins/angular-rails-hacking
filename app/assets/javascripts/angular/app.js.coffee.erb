@@ -1,0 +1,24 @@
+console.log("Loaded MyApp angularjs")
+app = angular.module('MyApp', ["ngResource"])
+
+app.config ["$locationProvider", ($locationProvider) ->
+  $locationProvider.html5Mode true
+]
+
+app.config ["$routeProvider", ($routeProvider) ->
+  $routeProvider.when("/users/:userId/albums",
+    templateUrl: "<%= asset_path('angular/templates/albums/index.html') %>"
+    controller: AlbumsCtrl
+  )
+
+  $routeProvider.when("/user/:userId/album/:albumId/photos",
+    templateUrl: "<%= asset_path('angular/templates/albums/photos.html') %>"
+    controller: PhotosCtrl
+  )
+]
+
+app.factory "Album", ($resource) ->
+  $resource("/users/:userId/albums/:id", {userId: "@userId", id: "@id"}, {update: {method: "PUT"}})
+
+app.factory "Photo", ($resource) ->
+  $resource("/users/:userId/albums/:albumId/photos/:id", {userId: "@userId", albumId: "@albumId", id: "@id"}, {update: {method: "PUT"}})

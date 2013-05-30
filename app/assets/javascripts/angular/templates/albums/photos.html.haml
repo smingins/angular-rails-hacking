@@ -1,0 +1,8 @@
+%h3 Photos from {{album.name}}
+
+%ul.photos
+  %li{'ng-repeat' => "photo in photos"}
+    {{photo.title}}
+
+%a{:href => "/users/{{album.user_id}}/albums"}
+  Back

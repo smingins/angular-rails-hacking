@@ -1,13 +1,19 @@
 AngularRailsHacking::Application.routes.draw do
+  get "photos/index"
+
   get "home/index"
-
   devise_for :users
-
-  get "dashboard/index"
-
   root :to => 'home#index'
   match 'dashboard' => 'dashboard#index', :as => :user_root
 
+  match '/user/:user_id/album/:album_id/photos' => 'users/albums#index'
+
+
+  resources :users do
+    resources :albums, module: :users do
+      resources :photos
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
