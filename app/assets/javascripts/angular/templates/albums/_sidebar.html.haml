@@ -12,4 +12,10 @@
       %form.form-inline{"ng-submit" => "addAlbum()"}
         .input-append
           %input.span6{"ng-model" => "name", :type => "text", :placeholder => "New Album"}
-          %button.btn Add
+          %button.btn{'ng-disabled' => "!name"} Add
+
+    %li.nav-header Upload
+    %li
+      %span.btn.fileinput-button{'ng-class' => "{'disabled': !albumIdSelected}"}
+        %input{"data-url" => "dataUrl", :done => "uploadFinished(e, data)", 'fileupload' => "", :multiple => "", :name => "files[]", :type => "file", 'disable-button' => "!albumIdSelected"}
+        %span Add Photos...

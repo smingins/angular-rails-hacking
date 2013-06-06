@@ -1,5 +1,5 @@
 console.log("Loaded MyApp angularjs")
-app = angular.module('MyApp', ["ngResource"])
+@app = angular.module('MyApp', ["ngResource"])
 
 app.config ["$httpProvider", (provider) ->
   provider.defaults.headers.common["X-CSRF-Token"] = $("meta[name=csrf-token]").attr("content")
@@ -20,12 +20,3 @@ app.config ["$routeProvider", ($routeProvider) ->
     controller: PhotosCtrl
   )
 ]
-
-app.factory "Album", ($resource) ->
-  $resource("/users/:userId/albums/:id", {userId: "@userId", id: "@id"}, {update: {method: "PUT"}})
-
-app.factory "Photo", ($resource) ->
-  $resource("/users/:userId/albums/:albumId/photos/:id", {userId: "@userId", albumId: "@albumId", id: "@id"}, {update: {method: "PUT"}})
-
-app.factory "AlbumList", (Album, $routeParams) ->
-  @album_list ||= Album.query({userId: $routeParams.userId})

@@ -16,6 +16,13 @@ the selected Album appear on the right.  Thanks to those who helped me work this
 
 
 ## Setup
+
+Requires imagemagick for Paperclip gem see https://github.com/thoughtbot/paperclip
+
+````
+brew install imagemagick
+````
+
 ````
   bundle
   rake db:migrate

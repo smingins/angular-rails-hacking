@@ -11,6 +11,8 @@ gem 'haml'
 gem 'html2haml'
 gem 'devise'
 
+gem "paperclip", "~> 3.0" # file attachments
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

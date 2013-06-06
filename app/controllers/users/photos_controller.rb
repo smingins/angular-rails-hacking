@@ -10,7 +10,22 @@ class Users::PhotosController < ApplicationController
 
     respond_with(@photos) do |format|
       format.html { render }
-      format.json { render json: @photos.to_json }
+      format.json { render json: @photos.to_json(methods: :thumbnail_url) }
+    end
+  end
+
+  def create
+    user   = User.find(params[:user_id])
+    album  = user.albums.find(params[:album_id])
+  
+    photos_uploaded = []
+
+    params[:files].each do |file|
+      photos_uploaded << album.photos.create(title: file.original_filename, image: file)
+    end
+
+    respond_with(photos_uploaded) do |format|
+      format.json { render json: photos_uploaded.to_json(root: false) }
     end
   end
 end

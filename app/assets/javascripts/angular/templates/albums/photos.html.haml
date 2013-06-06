@@ -9,5 +9,5 @@
         You have no Photos in this Album
       %li.span2{'ng-repeat' => "photo in photos"}
         .thumbnail
-          =image_tag('rails.png', :class => "thumbnail")
+          %img{'ng-src' => "{{photo.thumbnail_url}}", :class => "thumbnail"}
           %em {{photo.title}}
