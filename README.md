@@ -15,6 +15,22 @@ the selected Album appear on the right.  Thanks to those who helped me work this
 ![Alt text](app/assets/images/screenshot.png?raw=true)
 
 
+
+## Branches
+
+I decided to create branches at certain points.
+
+### Initial Master Detail
+
+This has no uploading and does not require imagemagick.  The initial feature was simply to show a master list on the left and selected detail on the right.  And it allows adding to the master list.
+
+https://github.com/smingins/angular-rails-hacking/tree/master-detail
+
+
+### Current
+
+This added photo uploading to the selected Album using jquery fileupload wrapped in an Angular directive.  Took some directive hacking though.
+
 ## Setup
 
 Requires imagemagick for Paperclip gem see https://github.com/thoughtbot/paperclip
