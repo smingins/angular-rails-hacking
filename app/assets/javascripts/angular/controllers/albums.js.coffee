@@ -11,9 +11,6 @@
 
   $scope.albumIdSelected = $routeParams.albumId
 
-
-  $scope.markers = [1,2,3,4]
-
   $scope.dataUrl = "/users/" + $routeParams.userId + "/albums/" + $routeParams.albumId + "/photos"
 
   $scope.uploadFinished = (e, data) ->
