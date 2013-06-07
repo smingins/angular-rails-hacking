@@ -32,6 +32,8 @@ Added photo uploading that uses a directive to wrap around jquery file upload.  
 
 Paperclip requires imagemagick.
 
+https://github.com/smingins/angular-rails-hacking/tree/photo-upload
+
 
 ### Current
 
