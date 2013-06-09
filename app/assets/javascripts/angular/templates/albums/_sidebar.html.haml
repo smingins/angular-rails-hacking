@@ -3,19 +3,21 @@
   %ul.nav.nav-list
     %li.nav-header Albums
     %li{'ng-repeat' => "album in albums", 'ng-class' => "{'active':album.id == albumIdSelected}"}
-      %a{:href => "/user/{{album.user_id}}/album/{{album.id}}/photos"}
+      %a.span8{:href => "/user/{{album.user_id}}/album/{{album.id}}/photos"}
         {{album.name}}
-
-
+      %ul.span4
+        %i.icon-edit
+        %i.icon-trash{"ng-click" => "deleteAlbum(album)"}
+    %li.divider
     %li.nav-header New
     %li
       %form.form-inline{"ng-submit" => "addAlbum()"}
         .input-append
           %input.span6{"ng-model" => "name", :type => "text", :placeholder => "New Album"}
           %button.btn{'ng-disabled' => "!name"} Add
-
+    %li.divider
     %li.nav-header Upload
     %li
       %span.btn.fileinput-button{'ng-class' => "{'disabled': !albumIdSelected}"}
-        %input{"data-url" => "dataUrl", :done => "uploadFinished(e, data)", 'fileupload' => "", :multiple => "", :name => "files[]", :type => "file", 'disable-button' => "!albumIdSelected"}
+        %input{"data-url" => "dataUrl", :done => "uploadFinished(e, data)", 'fileupload' => "", :name => "files[]", :type => "file", 'disable-button' => "!albumIdSelected", :progress => "updateProgress(e, data)"}
         %span Add Photos...

@@ -1,2 +1,10 @@
 app.factory "AlbumList", (Album, $routeParams) ->
-  @album_list ||= Album.query({userId: $routeParams.userId})
+  albumList = {}
+
+  albumList.get = ->
+    @albumList ||= Album.query({userId: $routeParams.userId})
+
+  albumList.clearCache =->
+    @albumList = undefined
+
+  albumList
