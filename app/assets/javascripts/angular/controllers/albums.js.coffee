@@ -18,6 +18,16 @@
       AlbumList.clearCache()
       $location.path("/users/" + $routeParams.userId + "/albums/")
 
+  $scope.editAlbum = (album) ->
+    album.editing = true
+    album.previous_name = album.name
+
+  $scope.updateAlbum = (album) ->
+    if album.name != album.previous_name
+      album.$update
+        userId: album.user_id, id: album.id
+    album.editing = false
+
   $scope.albumIdSelected = $routeParams.albumId
 
   $scope.dataUrl = "/users/" + $routeParams.userId + "/albums/" + $routeParams.albumId + "/photos"

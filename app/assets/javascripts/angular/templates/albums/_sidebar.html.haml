@@ -3,11 +3,17 @@
   %ul.nav.nav-list
     %li.nav-header Albums
     %li{'ng-repeat' => "album in albums", 'ng-class' => "{'active':album.id == albumIdSelected}"}
-      %a.span8{:href => "/user/{{album.user_id}}/album/{{album.id}}/photos"}
+      -# Edit Mode Off
+      %a.span8{:href => "/user/{{album.user_id}}/album/{{album.id}}/photos", "ng-hide" => "album.editing"}
         {{album.name}}
-      %ul.span4
-        %i.icon-edit
-        %i.icon-trash{"ng-click" => "deleteAlbum(album)"}
+      %ul.nav.span4{"ng-hide" => "album.editing"}
+        %li
+          %i.icon-pencil{"ng-click" => "editAlbum(album)"}
+          %i.icon-trash{"ng-click" => "deleteAlbum(album)"}
+      -# Edit Mode On
+      %span{"ng-show" => "album.editing"}
+        %input.span8{"ng-model" => "album.name", "ng-required" => "", :placeholder => "Album Name", :type => "text"}
+        %i.icon-ok{"ng-click" => "updateAlbum(album)"}
     %li.divider
     %li.nav-header New
     %li

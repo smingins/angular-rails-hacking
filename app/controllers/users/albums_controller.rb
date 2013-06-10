@@ -33,6 +33,17 @@ class Users::AlbumsController < ApplicationController
     end
   end
 
+  def update
+    @user = User.find(params[:user_id])
+    @album = @user.albums.find(params[:id])
+    @album.update_attributes(params[:album])
+
+    respond_with(@album) do |format|
+      format.html { render }
+      format.json { render json: @album.to_json(root: false) }
+    end
+  end
+
   def destroy
     @user = User.find(params[:user_id])
     @album = @user.albums.find(params[:id])
