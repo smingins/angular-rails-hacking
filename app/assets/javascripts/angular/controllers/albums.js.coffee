@@ -19,14 +19,19 @@
       $location.path("/users/" + $routeParams.userId + "/albums/")
 
   $scope.editAlbum = (album) ->
-    album.editing = true
     album.previous_name = album.name
+    album.editing = true
+
+  $scope.cancelEditAlbum = (album) ->
+    album.name = album.previous_name
+    album.editing = false
 
   $scope.updateAlbum = (album) ->
-    if album.name != album.previous_name
-      album.$update
-        userId: album.user_id, id: album.id
-    album.editing = false
+    if album.name
+      if album.name isnt album.previous_name
+        album.$update
+          userId: album.user_id, id: album.id
+      album.editing = false
 
   $scope.albumIdSelected = $routeParams.albumId
 

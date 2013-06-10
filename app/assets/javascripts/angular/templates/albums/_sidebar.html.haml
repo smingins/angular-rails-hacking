@@ -14,6 +14,7 @@
       %span{"ng-show" => "album.editing"}
         %input.span8{"ng-model" => "album.name", "ng-required" => "", :placeholder => "Album Name", :type => "text"}
         %i.icon-ok{"ng-click" => "updateAlbum(album)"}
+        %i.icon-remove{"ng-click" => "cancelEditAlbum(album)"}
     %li.divider
     %li.nav-header New
     %li
