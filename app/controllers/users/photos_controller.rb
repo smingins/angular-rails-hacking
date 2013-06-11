@@ -28,4 +28,26 @@ class Users::PhotosController < ApplicationController
       format.json { render json: photos_uploaded.to_json(root: false) }
     end
   end
+
+  def update
+    user   = User.find(params[:user_id])
+    album  = user.albums.find(params[:album_id])
+    photo  = album.photos.find(params[:id])
+    photo.update_attributes(params[:photo])
+
+    respond_with(photo) do |format|
+      format.json { render json: photo.to_json(root: false) }
+    end
+  end
+
+  def destroy
+    user   = User.find(params[:user_id])
+    album  = user.albums.find(params[:album_id])
+    photo  = album.photos.find(params[:id])
+    photo.delete
+
+    respond_with(photo) do |format|
+      format.json { render json: photo.to_json(root: false) }
+    end
+  end
 end

@@ -10,4 +10,13 @@
       %li.span2{'ng-repeat' => "photo in photos"}
         .thumbnail
           %img{'ng-src' => "{{photo.thumbnail_url}}", :class => "thumbnail"}
-          %em {{photo.title}}
+          -# Edit Mode Off
+          %em{"ng-hide" => "photo.editing"} {{photo.title}}
+          %i.icon-pencil{"ng-click" => "editPhoto(photo)", "ng-hide" => "photo.editing"}
+          %i.icon-trash{"ng-click" => "deletePhoto(photo)"}
+
+          -# Edit Mode On
+          %span{"ng-show" => "photo.editing"}
+            %input.span6{"ng-model" => "photo.title", "ng-required" => "", :placeholder => "Title", :type => "text"}
+            %i.icon-ok{"ng-click" => "updatePhoto(photo)"}
+            %i.icon-remove{"ng-click" => "cancelEditPhoto(photo)"}
