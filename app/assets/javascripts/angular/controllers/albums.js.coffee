@@ -1,4 +1,4 @@
-@AlbumsCtrl = ($scope, AlbumList, Album, $routeParams, $route, $location) ->
+@AlbumsCtrl = ["$scope", "AlbumList", "Album", "$routeParams", "$route", "$location", ($scope, AlbumList, Album, $routeParams, $route, $location) ->
   console.log("in the albums controller")
 
   $scope.albums = AlbumList.get()
@@ -43,3 +43,4 @@
   $scope.updateProgress = (e, data) ->
     progress = parseInt(data.loaded / data.total * 100, 10)
     console.log(progress)
+]

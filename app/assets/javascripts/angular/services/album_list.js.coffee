@@ -1,4 +1,4 @@
-app.factory "AlbumList", (Album, $routeParams) ->
+app.factory "AlbumList", ["Album", "$routeParams", (Album, $routeParams) ->
   albumList = {}
 
   albumList.get = ->
@@ -8,3 +8,4 @@ app.factory "AlbumList", (Album, $routeParams) ->
     @albumList = undefined
 
   albumList
+]

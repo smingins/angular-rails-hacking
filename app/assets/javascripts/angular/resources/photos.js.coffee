@@ -1,2 +1,3 @@
-app.factory "Photo", ($resource) ->
+app.factory "Photo", ["$resource", ($resource) ->
   $resource("/users/:userId/albums/:albumId/photos/:id", {userId: "@userId", albumId: "@albumId", id: "@id"}, {update: {method: "PUT"}})
+]

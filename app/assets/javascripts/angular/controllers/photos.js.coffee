@@ -1,4 +1,4 @@
-@PhotosCtrl = ($scope, Album, Photo, $routeParams, $route) ->
+@PhotosCtrl = ["$scope", "Album", "Photo", "$routeParams", "$route", ($scope, Album, Photo, $routeParams, $route) ->
   console.log("in the photos controller")
   $scope.album  = Album.get({userId: $routeParams.userId, id: $routeParams.albumId})
   $scope.photos = Photo.query({userId: $routeParams.userId, albumId: $routeParams.albumId})
@@ -24,5 +24,4 @@
     , ->
       # AlbumList.clearCache()
       $route.reload()
-
-
+]
