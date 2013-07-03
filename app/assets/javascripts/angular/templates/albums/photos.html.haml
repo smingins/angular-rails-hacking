@@ -13,7 +13,7 @@
           -# Edit Mode Off
           %em{"ng-hide" => "photo.editing"} {{photo.title}}
           %i.icon-pencil{"ng-click" => "editPhoto(photo)", "ng-hide" => "photo.editing"}
-          %i.icon-trash{"ng-click" => "deletePhoto(photo)"}
+          %i.icon-trash{"ng-click" => "deletePhoto(photo)", "ng-hide" => "photo.editing"}
 
           -# Edit Mode On
           %span{"ng-show" => "photo.editing"}
