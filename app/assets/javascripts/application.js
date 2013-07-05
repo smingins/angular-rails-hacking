@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require jquery.ui.widget
+//= require jquery.ui.block
 //= require jquery.iframe-transport
 //= require jquery.fileupload
 //= require angular

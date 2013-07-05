@@ -1,6 +1,7 @@
 app.directive "fileupload", ->
   restrict: "A"
   scope:
+    start: "&"
     done: "&"
     progress: "&"
     url: "=url"
@@ -12,15 +13,21 @@ app.directive "fileupload", ->
 
     optionsObj = dataType: "json"
     if scope.done
-      optionsObj.done = ->
+      optionsObj.stop = (e) ->
+        $.unblockUI()
         scope.$apply ->
           scope.done
-            e: element
-            data: attrs
+            e: e
 
+    if scope.start
+      optionsObj.start = (e) ->
+        $.blockUI()
+        scope.$apply ->
+          scope.start
+            e: e
 
     if scope.progress
-      optionsObj.progress = (e, data) ->
+      optionsObj.progressall = (e, data) ->
         scope.$apply ->
           scope.progress
             e: e

@@ -37,8 +37,12 @@
 
   $scope.dataUrl = "/users/" + $routeParams.userId + "/albums/" + $routeParams.albumId + "/photos"
 
-  $scope.uploadFinished = (e, data) ->
+  $scope.uploadStarted = (e) ->
+    $scope.uploading = true
+
+  $scope.uploadFinished = (e) ->
     $route.reload()
+    $scope.uploading = false
 
   $scope.updateProgress = (e, data) ->
     progress = parseInt(data.loaded / data.total * 100, 10)

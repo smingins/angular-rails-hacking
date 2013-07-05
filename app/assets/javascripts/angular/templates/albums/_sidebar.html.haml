@@ -26,5 +26,7 @@
     %li.nav-header Upload
     %li
       %span.btn.fileinput-button{'ng-class' => "{'disabled': !albumIdSelected}"}
-        %input{"data-url" => "dataUrl", :done => "uploadFinished(e, data)", 'fileupload' => "", :name => "files[]", :type => "file", 'disable-button' => "!albumIdSelected", :progress => "updateProgress(e, data)"}
+        %input{"data-url" => "dataUrl", :done => "uploadFinished(e)", 'fileupload' => "", :multiple => "", :name => "files[]", :type => "file", 'disable-button' => "!albumIdSelected", :progress => "updateProgress(e, data)", :start => "uploadStarted(e)"}
         %span Add Photos...
+    %li
+      %img{'ng-src' => "/assets/ajax-loader.gif", "ng-show" => "uploading"}
