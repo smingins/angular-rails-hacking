@@ -1,8 +1,13 @@
 .row-fluid
   %div{'ng-include' => "'" + asset_path('angular/templates/albums/_sidebar.html') + "'"}}
 
-  .span10
-    %h3 Photos from {{album.name}}
+  .span10{"infinite-scroll" => "nextPage()", "infinite-scroll-disabled" => 'noscroll', "infinite-scroll-distance" => "0"}
+    .row-fluid
+      .span3
+        %h3 Photos from {{album.name}}
+      .span9.pull-right
+        %button.btn{"ng-click" => "editMode=true", "ng-hide" => "editMode"} Edit
+        %button.btn{"ng-click" => "editModeOff()", "ng-show" => "editMode"} Done
 
     %ul.thumbnails
       %li.span2{'ng-show' => "!photos.length"}
@@ -11,12 +16,8 @@
         .thumbnail
           %img{'ng-src' => "{{photo.thumbnail_url}}", :class => "thumbnail"}
           -# Edit Mode Off
-          %em{"ng-hide" => "photo.editing"} {{photo.title}}
-          %i.icon-pencil{"ng-click" => "editPhoto(photo)", "ng-hide" => "photo.editing"}
-          %i.icon-trash{"ng-click" => "deletePhoto(photo)", "ng-hide" => "photo.editing"}
+          %em{"ng-hide" => "editMode"} {{photo.title}}
+          %i.icon-trash.pull-right{"ng-click" => "deletePhoto(photo)", "ng-hide" => "editMode"}
 
           -# Edit Mode On
-          %span{"ng-show" => "photo.editing"}
-            %input.span6{"ng-model" => "photo.title", "ng-required" => "", :placeholder => "Title", :type => "text"}
-            %i.icon-ok{"ng-click" => "updatePhoto(photo)"}
-            %i.icon-remove{"ng-click" => "cancelEditPhoto(photo)"}
+          %input.span10{"ng-model" => "photo.title", "ng-required" => "", :placeholder => "Title", :type => "text", "ng-show" => "editMode"}

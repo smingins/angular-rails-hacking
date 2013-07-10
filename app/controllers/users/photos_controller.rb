@@ -6,7 +6,7 @@ class Users::PhotosController < ApplicationController
   def index
     @user   = User.find(params[:user_id])
     @album  = @user.albums.find(params[:album_id])
-    @photos = @album.photos
+    @photos = @album.photos.page(params[:page] || 1)
 
     respond_with(@photos) do |format|
       format.html { render }

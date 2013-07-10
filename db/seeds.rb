@@ -14,3 +14,11 @@ fred = User.create!(email: 'fred@example.com', name: 'Fred Tester', password: 'p
     album.photos.create(title: photo_title)
   end
 end
+
+
+
+lots = fred.albums.create(name: "Lots")
+
+1000.times do |i|
+  lots.photos.create(title: "Photo #{i}")
+end
